@@ -79,7 +79,12 @@ article div {
     margin: 20px auto;
 }
 
+article button:hover {
+    transform: scale(1.1);
+}
+
 .delete {
+    transition-duration: 0.2s;
     height: 40px;
     background-color: white;
     color: red;
@@ -90,6 +95,7 @@ article div {
 }
 
 .update {
+    transition-duration: 0.2s;
     height: 40px;
     width: 100px;
     background-color: white;

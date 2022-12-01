@@ -28,7 +28,7 @@ inputs.forEach((input)=>{
             contenu :document.querySelector("textarea[name='contenu']").value
         }
         localStorage.setItem("autoSave", JSON.stringify(saveArticle))
-        console.log(localStorage)
+        
     })
 
 })
@@ -43,7 +43,12 @@ saveArticle.addEventListener("click", (e) => {
         titre :document.querySelector("input[name='titre']").value,
         contenu :document.querySelector("textarea[name='contenu']").value
     }
-    console.log(newArticle)
     localStorage.setItem(newArticle.titre, JSON.stringify(newArticle))
-    console.log(localStorage)
+    // Suppression de la sauvegarde auto
+    localStorage.removeItem("autoSave")
+    document.querySelector("input[name='auteur']").value = ""
+    document.querySelector("input[name='img']").value = ""
+    document.querySelector("input[name='categorie']").value = ""
+    document.querySelector("input[name='titre']").value = ""
+    document.querySelector("textarea[name='contenu']").value = ""
 })

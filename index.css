@@ -1,0 +1,32 @@
+header{
+    background-color: #50AD65;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+header div {
+    margin-right: 20px;
+    color: white;
+}
+
+h1 {
+    margin-left: 20px;
+    font-size: 40px;
+    font-family: sans-serif;
+}
+
+main{
+    border-top: 1px solid #000;
+    min-height: 100vh;
+    background-color: #EBF0F0;
+}
+
+footer{
+    width: 100vw;
+    height: 100px;
+    background-color: #2F4353;
+}

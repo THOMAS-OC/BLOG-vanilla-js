@@ -1,6 +1,10 @@
-let posts = []
+let posts = [] 
 const main = document.querySelector("main")
+const filtreContain = document.querySelector("ul")
 
+let filtres = document.querySelectorAll("li")
+console.log(filtres);
+let activeFilter = ""
 // Ajout des post au tableau
 for (let key of Object.keys(localStorage)) {
     
@@ -12,21 +16,51 @@ for (let key of Object.keys(localStorage)) {
 }
 
 // Insertion des posts dans le DOM HTML
-for (const iterator of posts) {
-    console.log(iterator);
-    main.innerHTML += `<article>
-    <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
-    <h2> ${iterator.titre}</h2>
-    <h3> ${iterator.auteur} - date</h3>
-    <p> ${iterator.contenu}</p>            
-    <div>
-        <button class="delete">Supprimer</button>
-        <button class="update">Modifier</button>
-    </div>
+function insertPost() {
+    main.innerHTML = ""
 
-    </article>
-    `
+    if (activeFilter) {
+        alert("Filtré !")
+        for (const iterator of posts) {
+            if (iterator.categorie === activeFilter) {
+                console.log(iterator);
+                main.innerHTML += `<article>
+                <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+                <h2> ${iterator.titre}</h2>
+                <h3> ${iterator.auteur} - date</h3>
+                <p> ${iterator.contenu}</p>            
+                <div>
+                    <button class="delete">Supprimer</button>
+                    <button class="update">Modifier</button>
+                </div>
+            
+                </article>
+                `
+            }
+        }
+    }
+
+    else {
+        alert("pas de filtres")
+        for (const iterator of posts) {
+            console.log(iterator);
+            main.innerHTML += `<article>
+            <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+            <h2> ${iterator.titre}</h2>
+            <h3> ${iterator.auteur} - date</h3>
+            <p> ${iterator.contenu}</p>            
+            <div>
+                <button class="delete">Supprimer</button>
+                <button class="update">Modifier</button>
+            </div>
+        
+            </article>
+            `
+        }
+    }
 }
+
+insertPost()
 
 // Suppression d'un post
 const buttonDelete = document.querySelectorAll(".delete")
@@ -57,4 +91,20 @@ asideBtn.addEventListener("click", () => {
         main.style.transform = "translateX(10vw)"
     }
 
+})
+
+// Affichages des filtres
+for (const iterator of posts) {
+    console.log(iterator.categorie);
+    filtreContain.innerHTML += `<li> ${iterator.categorie} </li>`
+    filtres = document.querySelectorAll("li")
+}
+
+// Filtrage des posts
+filtres.forEach((el) => {
+    el.addEventListener("click", () => {
+        activeFilter = el.innerText
+        alert(el.innerText)
+        insertPost()
+    })
 })

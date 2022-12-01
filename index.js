@@ -107,6 +107,10 @@ function updateFilters() {
             listFilter.push(iterator.categorie)
         }
     }
+    if (filtreContain.innerHTML) {
+        filtreContain.innerHTML += `<li> X </li>`
+        filtres = document.querySelectorAll("li")
+    } 
 }
 
 updateFilters()
@@ -114,7 +118,14 @@ updateFilters()
 // Filtrage des posts
 filtres.forEach((el) => {
     el.addEventListener("click", () => {
-        activeFilter = el.innerText
-        insertPost()
+        if (el.innerText == "X") {
+            activeFilter = ""
+            insertPost()
+        }
+        else {
+            activeFilter = el.innerText
+            insertPost()
+        }
+
     })
 })

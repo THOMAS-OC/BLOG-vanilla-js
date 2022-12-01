@@ -5,25 +5,29 @@ const filtreContain = document.querySelector("ul")
 let filtres = document.querySelectorAll("li")
 console.log(filtres);
 let activeFilter = ""
-// Ajout des post au tableau
-for (let key of Object.keys(localStorage)) {
-    
-    if (key != "autoSave") {
-        let post = JSON.parse(localStorage.getItem(key))
-        posts.push(post)
-    }
 
+// Ajout des post au tableau
+
+function updatePosts () {
+    posts = []
+    for (let key of Object.keys(localStorage)) {
+    
+        if (key != "autoSave") {
+            let post = JSON.parse(localStorage.getItem(key))
+            posts.push(post)
+        }
+    
+    }
 }
 
+updatePosts()
 // Insertion des posts dans le DOM HTML
 function insertPost() {
     main.innerHTML = ""
 
     if (activeFilter) {
-        alert("Filtré !")
         for (const iterator of posts) {
             if (iterator.categorie === activeFilter) {
-                console.log(iterator);
                 main.innerHTML += `<article>
                 <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                 <h2> ${iterator.titre}</h2>
@@ -41,9 +45,7 @@ function insertPost() {
     }
 
     else {
-        alert("pas de filtres")
         for (const iterator of posts) {
-            console.log(iterator);
             main.innerHTML += `<article>
             <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
             <h2> ${iterator.titre}</h2>
@@ -66,12 +68,12 @@ insertPost()
 const buttonDelete = document.querySelectorAll(".delete")
 buttonDelete.forEach((btn)=>{
     btn.addEventListener("click", () => {
-        // alert("test")
         let articleParent = btn.parentNode.parentNode
         let title = articleParent.querySelector("h2").innerText
-        // console.log(title);
         localStorage.removeItem(title)
         articleParent.style.display = "none"
+        updatePosts()
+        updateFilters()
     })
 })
 
@@ -94,17 +96,25 @@ asideBtn.addEventListener("click", () => {
 })
 
 // Affichages des filtres
-for (const iterator of posts) {
-    console.log(iterator.categorie);
-    filtreContain.innerHTML += `<li> ${iterator.categorie} </li>`
-    filtres = document.querySelectorAll("li")
+function updateFilters() {
+    filtreContain.innerHTML = ""
+    let listFilter = []
+    for (const iterator of posts) {
+        if (!listFilter.includes(iterator.categorie))  {
+            console.log(iterator.categorie);
+            filtreContain.innerHTML += `<li> ${iterator.categorie} </li>`
+            filtres = document.querySelectorAll("li")
+            listFilter.push(iterator.categorie)
+        }
+    }
 }
+
+updateFilters()
 
 // Filtrage des posts
 filtres.forEach((el) => {
     el.addEventListener("click", () => {
         activeFilter = el.innerText
-        alert(el.innerText)
         insertPost()
     })
 })

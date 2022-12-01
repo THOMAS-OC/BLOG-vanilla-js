@@ -34,6 +34,7 @@ form{
     background-color: #FEFEFE;
     height: 95%;
     width: 45vw;
+    min-width: 350px;
     box-shadow: 0px 0px 7px rgb(98, 98, 98);
     padding: 30px;
 }

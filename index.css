@@ -8,6 +8,11 @@ header{
     color: white;
 }
 
+body{
+    background-color: #EBF0F0;
+    overflow-x: hidden;
+}
+
 header div {
     margin-right: 20px;
     color: white;
@@ -23,8 +28,8 @@ main{
     border-top: 1px solid #000;
     min-height: 100vh;
     height: auto;
-    background-color: #EBF0F0;
     padding-bottom: 10px;
+    transition-duration: 1s;
 }
 
 /* Mise en page post */
@@ -64,7 +69,7 @@ h3 {
     color: gray;
 }
 
-p{  
+article p{  
     margin: 50px auto;
     text-align: center;
     width: 70%;
@@ -106,6 +111,49 @@ article button:hover {
 }
 
 /* FIN layout post */
+
+/* Layout aside */
+aside{
+    transition-duration: 1s;
+    z-index: 10;
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -20vw;
+    background-color: #FEFEFE;
+    opacity: 0.9;
+    
+    box-shadow: 0px 3px 8px rgb(101, 101, 101);
+}
+
+aside.view {
+    left: 0;
+}
+
+aside .arrow{
+    position: absolute;
+    z-index: 11;
+    top: 50%;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: antiquewhite;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.aside_title{
+    margin-top: 50px;
+    font-style: italic;
+    font-family: sans-serif;
+    text-align: center;
+    color: blue;
+    font-size: 18px;
+}
 
 footer{
     width: 100vw;

@@ -21,7 +21,7 @@ for (const iterator of posts) {
     <p> ${iterator.contenu}</p>            
     <div>
         <button class="delete">Supprimer</button>
-        <button class="update">Sauvegarder</button>
+        <button class="update">Modifier</button>
     </div>
 
     </article>
@@ -37,6 +37,24 @@ buttonDelete.forEach((btn)=>{
         let title = articleParent.querySelector("h2").innerText
         // console.log(title);
         localStorage.removeItem(title)
-        articleParent.style.opacity = "0"
+        articleParent.style.display = "none"
     })
+})
+
+// Affichage de aside
+const aside = document.querySelector("aside")
+const asideBtn = document.querySelector(".arrow")
+
+asideBtn.addEventListener("click", () => {
+
+    if (aside.className == "view") {
+        aside.className = ""
+        main.style.transform = "translateX(0vw)"
+    }
+    
+    else {
+        aside.className = "view"
+        main.style.transform = "translateX(10vw)"
+    }
+
 })

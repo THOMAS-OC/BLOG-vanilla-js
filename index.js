@@ -1,7 +1,8 @@
 let posts = [] 
 const main = document.querySelector("main")
 const filtreContain = document.querySelector("ul")
-
+const inputSearch = document.querySelector("input[type='search']")
+let search = ""
 let filtres = document.querySelectorAll("li")
 console.log(filtres);
 let activeFilter = ""
@@ -25,7 +26,26 @@ updatePosts()
 function insertPost() {
     main.innerHTML = ""
 
-    if (activeFilter) {
+    if (search) {
+        for (const iterator of posts) {
+            if (iterator.contenu.toLowerCase().includes(search.toLowerCase()) || iterator.titre.toLowerCase().includes(search.toLowerCase()) || iterator.auteur.toLowerCase().includes(search.toLowerCase())) {
+                main.innerHTML += `<article>
+                <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+                <h2> ${iterator.titre}</h2>
+                <h3> ${iterator.auteur} - date</h3>
+                <p> ${iterator.contenu}</p>            
+                <div>
+                    <button class="delete">Supprimer</button>
+                    <button class="update">Modifier</button>
+                </div>
+            
+                </article>
+                `
+            }
+        }
+    }
+
+    else if (activeFilter) {
         for (const iterator of posts) {
             if (iterator.categorie === activeFilter) {
                 main.innerHTML += `<article>
@@ -128,4 +148,10 @@ filtres.forEach((el) => {
         }
 
     })
+})
+
+// Recherche dynamique
+inputSearch.addEventListener("keyup", () => {
+    search = inputSearch.value
+    insertPost()
 })

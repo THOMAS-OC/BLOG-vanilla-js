@@ -96,8 +96,8 @@ const buttonDelete = document.querySelectorAll(".delete")
 buttonDelete.forEach((btn)=>{
     btn.addEventListener("click", () => {
         let articleParent = btn.parentNode.parentNode
-        let title = articleParent.querySelector("h2").innerText
-        localStorage.removeItem(title)
+        let id = articleParent.getAttribute("data-id")
+        localStorage.removeItem(id)
         articleParent.style.display = "none"
         updatePosts()
         updateFilters()

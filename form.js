@@ -21,6 +21,7 @@ else if (isUpdate) {
     document.querySelector("input[name='img']").value = updateArticle.pictureProfil
     document.querySelector("input[name='categorie']").value = updateArticle.categorie
     document.querySelector("input[name='titre']").value = updateArticle.titre
+    document.querySelector("textarea").value = updateArticle.contenu
 }
 
 // Suppression des infos

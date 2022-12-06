@@ -1,3 +1,6 @@
+// Add or Update
+const isUpdate = new URL(location.href).searchParams.get("update")
+
 const saveArticle = document.querySelector('button[type="submit"]')
 const deleteInfo = document.querySelector('button[type="reset"]')
 const inputs = document.querySelectorAll("input")
@@ -37,13 +40,14 @@ inputs.forEach((input)=>{
 saveArticle.addEventListener("click", (e) => {
     e.preventDefault()
     let newArticle = {
+        id : (localStorage.length + 1).toString(),
         auteur : document.querySelector("input[name='auteur']").value,
         pictureProfil : document.querySelector("input[name='img']").value,
         categorie :document.querySelector("input[name='categorie']").value.toUpperCase(),
         titre :document.querySelector("input[name='titre']").value,
         contenu :document.querySelector("textarea[name='contenu']").value
     }
-    localStorage.setItem(newArticle.titre, JSON.stringify(newArticle))
+    localStorage.setItem(newArticle.id, JSON.stringify(newArticle))
     // Suppression de la sauvegarde auto
     localStorage.removeItem("autoSave")
     document.querySelector("input[name='auteur']").value = ""

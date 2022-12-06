@@ -1,11 +1,15 @@
+
+
 let posts = [] 
 const main = document.querySelector("main")
 const filtreContain = document.querySelector("ul")
 const inputSearch = document.querySelector("input[type='search']")
 let search = ""
 let filtres = document.querySelectorAll("li")
-console.log(filtres);
 let activeFilter = ""
+
+let updateBtn = document.querySelectorAll(".update")
+console.log(updateBtn)
 
 // Ajout des post au tableau
 
@@ -22,6 +26,7 @@ function updatePosts () {
 }
 
 updatePosts()
+
 // Insertion des posts dans le DOM HTML
 function insertPost() {
     main.innerHTML = ""
@@ -29,7 +34,7 @@ function insertPost() {
     if (search) {
         for (const iterator of posts) {
             if (iterator.contenu.toLowerCase().includes(search.toLowerCase()) || iterator.titre.toLowerCase().includes(search.toLowerCase()) || iterator.auteur.toLowerCase().includes(search.toLowerCase())) {
-                main.innerHTML += `<article>
+                main.innerHTML += `<article data-id=${iterator.id}>
                 <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                 <h2> ${iterator.titre}</h2>
                 <h3> ${iterator.auteur} - date</h3>
@@ -48,7 +53,7 @@ function insertPost() {
     else if (activeFilter) {
         for (const iterator of posts) {
             if (iterator.categorie === activeFilter) {
-                main.innerHTML += `<article>
+                main.innerHTML += `<article data-id=${iterator.id}>
                 <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                 <h2> ${iterator.titre}</h2>
                 <h3> ${iterator.auteur} - date</h3>
@@ -66,7 +71,7 @@ function insertPost() {
 
     else {
         for (const iterator of posts) {
-            main.innerHTML += `<article>
+            main.innerHTML += `<article data-id=${iterator.id}>
             <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
             <h2> ${iterator.titre}</h2>
             <h3> ${iterator.auteur} - date</h3>
@@ -80,6 +85,8 @@ function insertPost() {
             `
         }
     }
+
+    updateBtn = document.querySelectorAll(".update")
 }
 
 insertPost()
@@ -121,7 +128,6 @@ function updateFilters() {
     let listFilter = []
     for (const iterator of posts) {
         if (!listFilter.includes(iterator.categorie))  {
-            console.log(iterator.categorie);
             filtreContain.innerHTML += `<li> ${iterator.categorie} </li>`
             filtres = document.querySelectorAll("li")
             listFilter.push(iterator.categorie)
@@ -154,4 +160,19 @@ filtres.forEach((el) => {
 inputSearch.addEventListener("keyup", () => {
     search = inputSearch.value
     insertPost()
+})
+
+// Mise à jour de post
+updateBtn.forEach((el) => {
+    el.addEventListener("click", () => {
+        let updateArticle = {
+            auteur : "toto value",
+            pictureProfil : "toto picture",
+            categorie : "toto categorie",
+            titre : "toto title",
+            contenu : "toto content"
+        }
+        localStorage.setItem("autoSave", JSON.stringify(updateArticle))
+        location.assign(`http://127.0.0.1:5500/form.html?update=true`)
+    })
 })

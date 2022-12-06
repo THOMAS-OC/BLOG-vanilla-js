@@ -165,14 +165,11 @@ inputSearch.addEventListener("keyup", () => {
 // Mise à jour de post
 updateBtn.forEach((el) => {
     el.addEventListener("click", () => {
-        let updateArticle = {
-            auteur : "toto value",
-            pictureProfil : "toto picture",
-            categorie : "toto categorie",
-            titre : "toto title",
-            contenu : "toto content"
-        }
-        localStorage.setItem("autoSave", JSON.stringify(updateArticle))
-        location.assign(`http://127.0.0.1:5500/form.html?update=true`)
+
+        let articleParent = el.parentNode.parentNode
+        let id = articleParent.getAttribute("data-id")
+        console.log(id);
+
+        location.assign(`http://127.0.0.1:5500/form.html?updateId=${id}`)
     })
 })

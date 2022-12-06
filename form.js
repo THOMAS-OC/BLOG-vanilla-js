@@ -1,5 +1,5 @@
 // Add or Update
-const isUpdate = new URL(location.href).searchParams.get("update")
+const isUpdate = new URL(location.href).searchParams.get("updateId")
 
 const saveArticle = document.querySelector('button[type="submit"]')
 const deleteInfo = document.querySelector('button[type="reset"]')
@@ -7,12 +7,20 @@ const inputs = document.querySelectorAll("input")
 
 const autoSave = JSON.parse(localStorage.getItem("autoSave")) || false
 
-if (autoSave) {
+if (autoSave && !isUpdate) {
     console.log(autoSave);
     document.querySelector("input[name='auteur']").value = autoSave.auteur
     document.querySelector("input[name='img']").value = autoSave.pictureProfil
     document.querySelector("input[name='categorie']").value = autoSave.categorie
     document.querySelector("input[name='titre']").value = autoSave.titre
+}
+
+else if (isUpdate) {
+    const updateArticle = JSON.parse(localStorage.getItem(isUpdate)) || false
+    document.querySelector("input[name='auteur']").value = updateArticle.auteur
+    document.querySelector("input[name='img']").value = updateArticle.pictureProfil
+    document.querySelector("input[name='categorie']").value = updateArticle.categorie
+    document.querySelector("input[name='titre']").value = updateArticle.titre
 }
 
 // Suppression des infos
@@ -40,7 +48,7 @@ inputs.forEach((input)=>{
 saveArticle.addEventListener("click", (e) => {
     e.preventDefault()
     let newArticle = {
-        id : (localStorage.length + 1).toString(),
+        id : isUpdate ? isUpdate : (localStorage.length + 1).toString(),
         auteur : document.querySelector("input[name='auteur']").value,
         pictureProfil : document.querySelector("input[name='img']").value,
         categorie :document.querySelector("input[name='categorie']").value.toUpperCase(),

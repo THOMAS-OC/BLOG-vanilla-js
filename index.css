@@ -195,6 +195,10 @@ aside .arrow{
     cursor: pointer;
 }
 
+.arrow{
+    transition-duration: 0.5s;
+    color: red;
+}
 
 input[type="search"]{
     width: 90%;

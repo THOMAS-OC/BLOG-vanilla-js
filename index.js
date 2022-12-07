@@ -119,10 +119,12 @@ asideBtn.addEventListener("click", () => {
 
     if (aside.className == "view") {
         aside.className = ""
+        asideBtn.style.transform = "rotate(0deg)"
         main.style.transform = "translateX(0vw)"
     }
     
     else {
+        asideBtn.style.transform = "rotate(-180deg)"
         aside.className = "view"
         main.style.transform = "translateX(10vw)"
     }

@@ -45,11 +45,12 @@ inputs.forEach((input)=>{
 
 })
 
-// Ajout de l'article
+// Ajout ou modification de l'article
 saveArticle.addEventListener("click", (e) => {
     e.preventDefault()
     let newArticle = {
         id : isUpdate ? isUpdate : (localStorage.length + 1).toString(),
+        date : new Date().toLocaleDateString("fr"),
         auteur : document.querySelector("input[name='auteur']").value,
         pictureProfil : document.querySelector("input[name='img']").value || "anonyme.jpg",
         categorie :document.querySelector("input[name='categorie']").value.toUpperCase(),

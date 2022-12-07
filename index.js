@@ -40,7 +40,7 @@ function insertPost() {
                     main.innerHTML += `<article data-id=${iterator.id}>
                     <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                     <h2> ${iterator.titre}</h2>
-                    <h3> ${iterator.auteur} - date</h3>
+                    <h3> ${iterator.auteur} - ${iterator.date}</h3>
                     <p> ${iterator.contenu}</p>            
                     <div>
                         <button class="delete">Supprimer</button>
@@ -59,7 +59,7 @@ function insertPost() {
                     main.innerHTML += `<article data-id=${iterator.id}>
                     <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                     <h2> ${iterator.titre}</h2>
-                    <h3> ${iterator.auteur} - date</h3>
+                    <h3> ${iterator.auteur} - ${iterator.date}</h3>
                     <p> ${iterator.contenu}</p>            
                     <div>
                         <button class="delete">Supprimer</button>
@@ -77,7 +77,7 @@ function insertPost() {
                 main.innerHTML += `<article data-id=${iterator.id}>
                 <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
                 <h2> ${iterator.titre}</h2>
-                <h3> ${iterator.auteur} - date</h3>
+                <h3> ${iterator.auteur} - ${iterator.date}</h3>
                 <p> ${iterator.contenu}</p>            
                 <div>
                     <button class="delete">Supprimer</button>

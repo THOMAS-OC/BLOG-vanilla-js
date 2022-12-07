@@ -21,7 +21,6 @@ function updatePosts () {
             let post = JSON.parse(localStorage.getItem(key))
             posts.push(post)
         }
-    
     }
 }
 
@@ -31,62 +30,72 @@ updatePosts()
 function insertPost() {
     main.innerHTML = ""
 
-    if (search) {
-        for (const iterator of posts) {
-            if (iterator.contenu.toLowerCase().includes(search.toLowerCase()) || iterator.titre.toLowerCase().includes(search.toLowerCase()) || iterator.auteur.toLowerCase().includes(search.toLowerCase())) {
-                main.innerHTML += `<article data-id=${iterator.id}>
-                <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
-                <h2> ${iterator.titre}</h2>
-                <h3> ${iterator.auteur} - date</h3>
-                <p> ${iterator.contenu}</p>            
-                <div>
-                    <button class="delete">Supprimer</button>
-                    <button class="update">Modifier</button>
-                </div>
-            
-                </article>
-                `
-            }
-        }
-    }
-
-    else if (activeFilter) {
-        for (const iterator of posts) {
-            if (iterator.categorie === activeFilter) {
-                main.innerHTML += `<article data-id=${iterator.id}>
-                <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
-                <h2> ${iterator.titre}</h2>
-                <h3> ${iterator.auteur} - date</h3>
-                <p> ${iterator.contenu}</p>            
-                <div>
-                    <button class="delete">Supprimer</button>
-                    <button class="update">Modifier</button>
-                </div>
-            
-                </article>
-                `
-            }
-        }
+    if (!posts[0]){
+        main.innerHTML = `<p class="empty">Aucun article n'a été rédigé à ce jour. <br> <a href="form.html"> Ecrivez le <strong> premier ! </strong> </a> </p>`
     }
 
     else {
-        for (const iterator of posts) {
-            main.innerHTML += `<article data-id=${iterator.id}>
-            <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
-            <h2> ${iterator.titre}</h2>
-            <h3> ${iterator.auteur} - date</h3>
-            <p> ${iterator.contenu}</p>            
-            <div>
-                <button class="delete">Supprimer</button>
-                <button class="update">Modifier</button>
-            </div>
-        
-            </article>
-            `
+        console.log(posts)
+        if (search) {
+            for (const iterator of posts) {
+                if (iterator.contenu.toLowerCase().includes(search.toLowerCase()) || iterator.titre.toLowerCase().includes(search.toLowerCase()) || iterator.auteur.toLowerCase().includes(search.toLowerCase())) {
+                    main.innerHTML += `<article data-id=${iterator.id}>
+                    <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+                    <h2> ${iterator.titre}</h2>
+                    <h3> ${iterator.auteur} - date</h3>
+                    <p> ${iterator.contenu}</p>            
+                    <div>
+                        <button class="delete">Supprimer</button>
+                        <button class="update">Modifier</button>
+                    </div>
+                
+                    </article>
+                    `
+                }
+            }
         }
+    
+        else if (activeFilter) {
+            for (const iterator of posts) {
+                if (iterator.categorie === activeFilter) {
+                    main.innerHTML += `<article data-id=${iterator.id}>
+                    <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+                    <h2> ${iterator.titre}</h2>
+                    <h3> ${iterator.auteur} - date</h3>
+                    <p> ${iterator.contenu}</p>            
+                    <div>
+                        <button class="delete">Supprimer</button>
+                        <button class="update">Modifier</button>
+                    </div>
+                
+                    </article>
+                    `
+                }
+            }
+        }
+    
+        else {
+            for (const iterator of posts) {
+                main.innerHTML += `<article data-id=${iterator.id}>
+                <img src="img/${iterator.pictureProfil}" alt="Photo de profil">
+                <h2> ${iterator.titre}</h2>
+                <h3> ${iterator.auteur} - date</h3>
+                <p> ${iterator.contenu}</p>            
+                <div>
+                    <button class="delete">Supprimer</button>
+                    <button class="update">Modifier</button>
+                </div>
+            
+                </article>
+                `
+            }
+        }
+        updateBtn = document.querySelectorAll(".update")
     }
 
-    updateBtn = document.querySelectorAll(".update")
+
+
+    
 }
 
 insertPost()

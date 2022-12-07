@@ -4,11 +4,15 @@ let posts = []
 const main = document.querySelector("main")
 const filtreContain = document.querySelector("ul")
 const inputSearch = document.querySelector("input[type='search']")
+const modal = document.querySelector(".modal")
+const confirmDelete = document.querySelector(".confirm--delete")
+const cancelDelete = document.querySelector(".cancel--delete")
 let search = ""
 let filtres = document.querySelectorAll("li")
 let activeFilter = ""
 
 let updateBtn = document.querySelectorAll(".update")
+
 
 // Ajout des post au tableau
 
@@ -99,18 +103,32 @@ function insertPost() {
 insertPost()
 
 // Suppression d'un post
+let idDelete = null
+let articleDelete = null
 const buttonDelete = document.querySelectorAll(".delete")
+
 buttonDelete.forEach((btn)=>{
     btn.addEventListener("click", () => {
-        let articleParent = btn.parentNode.parentNode
-        let id = articleParent.getAttribute("data-id")
-        localStorage.removeItem(id)
-        articleParent.style.display = "none"
-        updatePosts()
-        updateFilters()
-        insertPost()
+        articleDelete = btn.parentNode.parentNode
+        idDelete = articleDelete.getAttribute("data-id")
+        modal.className = "modal modal__view"
     })
 })
+
+confirmDelete.addEventListener("click", () => {
+    idDelete
+    modal.className = "modal"
+    articleDelete.style.display = "none"
+    localStorage.removeItem(idDelete)
+    updatePosts()
+    updateFilters()
+    insertPost()
+})
+
+cancelDelete.addEventListener("click", () => {
+    modal.className = "modal"
+})
+
 
 // Affichage de aside
 const aside = document.querySelector("aside")

@@ -1,6 +1,7 @@
 *{
 	font-family: 'Source Sans Pro', sans-serif;
 }
+/* HEADER */
 
 header{
     background-color: #50AD65;
@@ -16,6 +17,7 @@ header{
 header a {
     margin-right: 20px;
     font-size: 20px;
+    position: relative;
 }
 
 header a::after{
@@ -42,6 +44,8 @@ header div {
     margin-right: 20px;
     color: white;
 }
+
+/* END HEADER */
 
 h1 {
     margin-left: 20px;

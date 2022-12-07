@@ -2,6 +2,13 @@
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+body{
+    background-color: #EBF0F0;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+
 header{
     background-color: #50AD65;
     width: 100vw;
@@ -39,15 +46,12 @@ header a:hover::after{
     transform: scaleX(1);
 }
 
-body{
-    background-color: #EBF0F0;
-    overflow-x: hidden;
-}
-
 header div {
     margin-right: 20px;
     color: white;
 }
+
+/* END HEADER */
 
 h1 {
     margin-left: 20px;

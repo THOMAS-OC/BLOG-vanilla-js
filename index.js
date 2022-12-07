@@ -108,6 +108,7 @@ buttonDelete.forEach((btn)=>{
         articleParent.style.display = "none"
         updatePosts()
         updateFilters()
+        insertPost()
     })
 })
 

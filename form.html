@@ -22,16 +22,16 @@
         <form>
             <h2>Ajouter un article</h2>
             <hr>
-            <label for="auteur">auteur</label>
-            <input type="text" name="auteur", id="auteur">
+            <label for="auteur">auteur *</label>
+            <input required type="text" name="auteur", id="auteur">
             <label for="img">Image de profil</label>
             <input type="text" name="img" id="img">
-            <label for="categorie">Catégorie</label>
-            <input type="text" name="categorie" id="categorie">
+            <label for="categorie">Catégorie *</label>
+            <input required type="text" name="categorie" id="categorie">
             <label for="titre">Titre</label>
-            <input type="text" name="titre" id="titre">
-            <label for="contenu">Contenu</label>
-            <textarea name="contenu" id="contenu"></textarea>
+            <input required minlength="4" maxlength="30" type="text" name="titre" id="titre">
+            <label for="contenu">Contenu *</label>
+            <textarea required minlength="200" maxlength="800" name="contenu" id="contenu"></textarea>
 
             <button type="reset">Annuler</button>
             <button type="submit">Sauvegarder</button>

@@ -65,4 +65,6 @@ saveArticle.addEventListener("click", (e) => {
     document.querySelector("input[name='categorie']").value = ""
     document.querySelector("input[name='titre']").value = ""
     document.querySelector("textarea[name='contenu']").value = ""
+    let pageForm = `${location.origin}/index.html`;
+    location.assign(pageForm)
 })

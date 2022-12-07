@@ -51,7 +51,7 @@ saveArticle.addEventListener("click", (e) => {
     let newArticle = {
         id : isUpdate ? isUpdate : (localStorage.length + 1).toString(),
         auteur : document.querySelector("input[name='auteur']").value,
-        pictureProfil : document.querySelector("input[name='img']").value,
+        pictureProfil : document.querySelector("input[name='img']").value || "anonyme.jpg",
         categorie :document.querySelector("input[name='categorie']").value.toUpperCase(),
         titre :document.querySelector("input[name='titre']").value,
         contenu :document.querySelector("textarea[name='contenu']").value

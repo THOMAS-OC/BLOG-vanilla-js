@@ -189,15 +189,13 @@ aside .arrow{
     height: 50px;
     border-radius: 50%;
     border: none;
-    background-color: antiquewhite;
+    background-color: white;
     font-weight: bold;
     font-size: 30px;
     cursor: pointer;
-}
-
-.arrow{
     transition-duration: 0.5s;
-    color: red;
+    color:#50AD65;
+    border: 2px solid black;
 }
 
 input[type="search"]{

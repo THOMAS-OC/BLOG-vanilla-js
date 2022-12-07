@@ -127,6 +127,11 @@ asideBtn.addEventListener("click", () => {
         asideBtn.style.transform = "rotate(-180deg)"
         aside.className = "view"
         main.style.transform = "translateX(10vw)"
+        window.setTimeout(() => {
+            aside.className = ""
+            asideBtn.style.transform = "rotate(0deg)"
+            main.style.transform = "translateX(0vw)"
+        }, 8000)
     }
 
 })

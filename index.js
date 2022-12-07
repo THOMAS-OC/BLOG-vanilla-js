@@ -116,7 +116,6 @@ buttonDelete.forEach((btn)=>{
 })
 
 confirmDelete.addEventListener("click", () => {
-    idDelete
     modal.className = "modal"
     articleDelete.style.display = "none"
     localStorage.removeItem(idDelete)
@@ -213,6 +212,10 @@ updateBtn.forEach((el) => {
     el.addEventListener("click", () => {
         let articleParent = el.parentNode.parentNode
         let id = articleParent.getAttribute("data-id")
-        location.assign(`http://127.0.0.1:5500/form.html?updateId=${id}`)
+        let url = location.href
+        url = url.slice(0, url.lastIndexOf("/"))
+        url = `${url}/form.html?updateId=${id}`;
+        console.log(url);
+        location.assign(url)
     })
 })

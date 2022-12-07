@@ -9,7 +9,6 @@ let filtres = document.querySelectorAll("li")
 let activeFilter = ""
 
 let updateBtn = document.querySelectorAll(".update")
-console.log(updateBtn)
 
 // Ajout des post au tableau
 
@@ -35,7 +34,6 @@ function insertPost() {
     }
 
     else {
-        console.log(posts)
         if (search) {
             for (const iterator of posts) {
                 if (iterator.contenu.toLowerCase().includes(search.toLowerCase()) || iterator.titre.toLowerCase().includes(search.toLowerCase()) || iterator.auteur.toLowerCase().includes(search.toLowerCase())) {
@@ -155,15 +153,28 @@ filtres.forEach((el) => {
     el.addEventListener("click", () => {
         if (el.innerText == "X") {
             activeFilter = ""
+            removeStyleFilters()
             insertPost()
         }
         else {
+            console.log(el)
             activeFilter = el.innerText
+            removeStyleFilters()
+            el.style.fontWeight = "bolder"
+            el.style.textDecoration = "underline"
             insertPost()
         }
 
     })
 })
+
+// removeStyleFilters
+function removeStyleFilters(){
+    filtres.forEach((el) => {
+        el.style.textDecoration = "none"
+        el.style.fontWeight = "normal"
+    })
+}
 
 // Recherche dynamique
 inputSearch.addEventListener("keyup", () => {
@@ -174,11 +185,8 @@ inputSearch.addEventListener("keyup", () => {
 // Mise à jour de post
 updateBtn.forEach((el) => {
     el.addEventListener("click", () => {
-
         let articleParent = el.parentNode.parentNode
         let id = articleParent.getAttribute("data-id")
-        console.log(id);
-
         location.assign(`http://127.0.0.1:5500/form.html?updateId=${id}`)
     })
 })

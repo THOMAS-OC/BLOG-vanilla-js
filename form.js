@@ -65,6 +65,10 @@ saveArticle.addEventListener("click", (e) => {
     document.querySelector("input[name='categorie']").value = ""
     document.querySelector("input[name='titre']").value = ""
     document.querySelector("textarea[name='contenu']").value = ""
-    let urlIndex = `${location.origin}/index.html`;
-    location.assign(urlIndex)
+
+    // Redirection vers l'accueil
+    let url = location.href
+    url = url.slice(0, url.lastIndexOf("/"))
+    url = `${url}/index.html`;
+    location.assign(url)
 })

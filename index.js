@@ -215,7 +215,6 @@ updateBtn.forEach((el) => {
         let url = location.href
         url = url.slice(0, url.lastIndexOf("/"))
         url = `${url}/form.html?updateId=${id}`;
-        console.log(url);
         location.assign(url)
     })
 })
